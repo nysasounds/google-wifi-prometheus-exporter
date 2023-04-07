@@ -5,6 +5,13 @@ import os
 import requests
 
 
+METRIC_TEMPLATE = '''\
+# HELP {metric} {metric_desc}
+# TYPE {metric} {metric_type}
+{metric}{metric_labels} {metric_value}
+'''
+
+
 # Get router address frpm env #
 router = os.environ.get('GOOGLE_WIFI_ROUTER')
 
@@ -23,8 +30,6 @@ class Google_Wifi_Exporter():
 
         self.router = router
         self.prefix = prefix
-
-        self.TEMPLATE = '# HELP {metric} {metric_desc}\n\r' + '# TYPE {metric} {metric_type}\n\r' + '{metric}{metric_labels} {metric_value}\n\r'
 
     def get_status(self):
         '''
@@ -76,7 +81,7 @@ class Google_Wifi_Exporter():
 
         # Return string formatted from template #
         return(
-                self.TEMPLATE.format(
+                METRIC_TEMPLATE.format(
                     metric = metric,
                     metric_desc = metric_desc,
                     metric_type = metric_type,
