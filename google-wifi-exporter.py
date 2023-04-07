@@ -19,7 +19,7 @@ if not router:
 
 class Google_Wifi_Exporter():
 
-    def __init__(self, router, prefix='google-wifi'):
+    def __init__(self, router, prefix='google_wifi'):
 
         self.router = router
         self.prefix = prefix
