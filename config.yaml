@@ -1,0 +1,25 @@
+tls:
+  enabled: false
+  crt: server.crt
+  key: server.key
+
+basicAuth:
+  enabled: false
+  username: stats
+  password: stats
+
+bearerAuth:
+  enabled: false
+  signingKey: this.is.not.secret.at.all
+
+log:
+  level: debug
+
+scripts:
+  - name: google-wifi
+    script: /usr/local/bin/google-wifi-exporter.py
+    ignoreOutputOnFail: true
+    timeout:
+      # in seconds, 0 or negative means none
+      max_timeout: 10
+      enforced: true
